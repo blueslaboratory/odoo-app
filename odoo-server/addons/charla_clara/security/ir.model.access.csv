@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_charla_clara_admin_charla,access.charla_clara.charla,model_charla_clara_charla,charla_clara.administrador,1,1,1,1
+access_charla_clara_user_charla,access.charla_clara.charla,model_charla_clara_charla,charla_clara.usuario,1,0,0,0
+
+access_charla_clara_admin_lugar,access.charla_clara.lugar,model_charla_clara_lugar,charla_clara.administrador,1,1,1,1
+access_charla_clara_user_lugar,access.charla_clara.lugar,model_charla_clara_lugar,charla_clara.usuario,1,0,0,0

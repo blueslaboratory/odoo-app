@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="report_charla_details" model="ir.actions.report">
+        <field name="name">Detalles Charla</field>
+        <field name="model">charla_clara.charla</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">charla_clara.report_charla_detail</field>
+        <field name="report_file">charla_clara.report_charla_detail</field>
+        <field name="binding_model_id" ref="model_charla_clara_charla"/>
+        <field name="binding_type">report</field>
+  </record>
+
+  <template id="report_charla_detail">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="text-center"  style="margin-top: 150px;"/>
+                        <div class="text-center" style="  box-shadow: 0px 0px 5px 1px #1e272e; text-transform: uppercase; font-size: 60px;">
+                          <span t-field="o.name"/>
+                          <div class="text-center" style="color: #ffb726; padding-bottom: 18px; margin-bottom: 20px;">
+                            <h4>
+                              <span t-field="o.fecha"/> -
+                              <span t-field="o.lugar"/> - Precio:
+                              <span t-field="o.precio"/>
+                            </h4>
+                          </div>
+                        </div>
+
+
+                        <table class="table table-sm o_main_table">
+                          <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+                          <thead style="display: table-row-group">
+                              <tr>
+                                  <th name="th_description" class="text-left">Tipo de charla</th>
+                                  <th name="th_quantity" class="text-left">Ponente</th>
+                                  <th name="th_priceunit" class="text-left">Duración(h)</th>
+                                  <th name="th_taxes" class="text-left">Asistentes Confirmados</th>
+                                  <th name="th_subtotal" class="text-left">Ganancias Totales</th>
+                              </tr>
+                          </thead>
+
+                          <tbody class="sale_tbody">
+                           <t>
+                             <tr>
+                               <t>
+                                 <td name="td_quantity" class="text-left">
+                                     <span t-field="o.tipo"/>
+                                 </td>
+                                 <td name="td_priceunit" class="text-left">
+                                     <span t-field="o.ponente"/>
+                                 </td>
+                                 <td name="td_priceunift" class="text-left">
+                                     <span t-field="o.duracion"/>
+                                 </td>
+                                 <td name="td_priceunifgt" class="text-left">
+                                     <span t-field="o.asistentes_confirmados"/>
+                                 </td>
+                                 <td name="td_priceunit" class="text-left">
+                                     <span t-field="o.ganancias_totales"/>
+                                     <span t-field="o.currency_id"/>
+                                 </td>
+                               </t>
+                             </tr>
+                           </t>
+                       </tbody>
+
+                      </table>
+
+                      <h5 class="text-left" style="text-decoration:underline;">
+                        Sinopsis
+                      </h5>
+                      <div class="text-left">
+                         <span t-field="o.sinopsis"/>
+                      </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

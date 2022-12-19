@@ -1,0 +1,347 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="charla_clara.list">
+      <field name="name">charla_clara list</field>
+      <field name="model">charla_clara.charla_clara</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- VISTA ÁRBOL - MODELO: CHARLA -->
+    <record model="ir.ui.view" id="charla_clara.charla_tree">
+      <field name="name">charla_clara.charla.tree</field>
+      <field name="model">charla_clara.charla</field>
+      <field name="arch" type="xml">
+        <tree string="Lista de charlas">
+          <field name="name"/>
+          <field name="fecha"/>
+          <field name="lugar"/>
+          <field name="tipo"/>
+          <field name="precio"/>
+          <field name="ponente"/>
+          <field name="sinopsis"/>
+          <field name="duracion" optional="show"/>
+          <field name="asistentes_confirmados" optional="show"/>
+          <field name="ganancias_totales" optional="show"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- VISTA FORMULARIO - MODELO: CHARLA -->
+    <record model="ir.ui.view" id="charla_clara.charla_form">
+      <field name="name">charla_clara.charla.form</field>
+      <field name="model">charla_clara.charla</field>
+      <field name="arch" type="xml">
+        <form string="Formulario Charla">
+          <sheet>
+            <h1 style="padding-left: 20px; padding-top: 20px; font-size: 32px; color: #1e272e; font-weight: bold; text-decoration: underline;">
+              <field style="text-decoration: underline;" name="name"/>
+            </h1>
+            <group>
+              <group>
+                <field name="fecha"/>
+                <field name="lugar"/>
+                <field name="duracion"/>
+                <field name="ponente"/>
+                <field name="tipo"/>
+              </group>
+              <group>
+                <field name="precio"/>
+                <field name="currency_id"/>
+                <field name="asistentes_confirmados"/>
+                <field name="ganancias_totales"/>
+              </group>
+            </group>
+            <field name="sinopsis"/>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- VISTA KANBAN - MODELO: CHARLA -->
+    <record model="ir.ui.view" id="charla_clara.charla_kanban">
+      <field name="name">charla_clara.charla.kanban</field>
+      <field name="model">charla_clara.charla</field>
+      <field name="arch" type="xml">
+        <kanban string="Vista Kanban de Charlas">
+          <field name="name"/>
+          <field name="fecha"/>
+          <field name="lugar"/>
+          <field name="ponente"/>
+          <field name="tipo"/>
+          <field name="ganancias_totales"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click" style="padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+                <strong class="o_kanban_record_title" style="font-size: 20px; font-weight: bold;text-decoration: underline;"><field name="name"/></strong>
+                <ul style="font-size: 14px; list-style-type: none; padding: 0;  display: flex; flex-direction: column; gap: 10px;" >
+                  <li>
+                    <span style="font-weight: bold;">- Fecha: </span><field name="fecha"/>
+                  </li>
+                  <li>
+                    <span style="font-weight: bold;">- Lugar: </span><field name="lugar"/>
+                  </li>
+                  <li>
+                    <span style="font-weight: bold;">- Ponente: </span><field name="ponente"/>
+                  </li>
+                  <li>
+                    <span style="font-weight: bold;">- Tipo: </span><field name="tipo"/>
+                  </li>
+                  <li>
+                    <span style="font-weight: bold;">- Ganancia Totales: </span><field name="ganancias_totales"/>
+                  </li>
+                </ul>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+
+    <!-- VISTA ÁRBOL - MODELO: LUGAR -->
+    <record model="ir.ui.view" id="charla_clara.lugar_tree">
+      <field name="name">charla_clara.lugar.tree</field>
+      <field name="model">charla_clara.lugar</field>
+      <field name="arch" type="xml">
+        <tree string="Lista de lugares">
+          <field name="name"/>
+          <!--
+          <field name="codigo_lugar"/>
+          -->
+          <field name="aforo" optional="show"/>
+          <field name="parking_dis"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- VISTA KANBAN - MODELO: LUGAR -->
+    <record model="ir.ui.view" id="charla_clara.lugar_kanban">
+      <field name="name">charla_clara.lugar.kanban</field>
+      <field name="model">charla_clara.lugar</field>
+      <field name="arch" type="xml">
+        <kanban string="Vista Kanban de Lugares">
+          <field name="name"/>
+          <field name="imagen"/>
+          <!--
+          <field name="codigo_lugar"/>
+          -->
+          <field name="aforo"/>
+          <field name="parking_dis"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click" style="padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+                <strong class="o_kanban_record_title" style="font-size: 20px; font-weight: bold;text-decoration: underline;"><field name="name"/></strong>
+                <ul style="font-size: 14px; list-style-type: none; padding: 0;  display: flex; flex-direction: column; gap: 10px;" >
+                  <li>
+                    <field style="max-width: 200px;box-shadow: 0px 0px 5px 1px #1e272e;" name="imagen" widget="image"/>
+                  </li>
+                  <li>
+                    <span style="font-weight: bold;">- Código Lugar: </span>
+                    <!--
+                    <field name="codigo_lugar"/>
+                    -->
+                  </li>
+                  <li>
+                    <span style="font-weight: bold;">- Aforo: </span><field name="aforo"/>
+                  </li>
+                  <li>
+                    <span style="font-weight: bold;">- Dispone de parking: </span><field name="parking_dis"/>
+                  </li>
+                </ul>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <!-- VISTA FORMULARIO - MODELO: LUGAR -->
+    <record model="ir.ui.view" id="charla_clara.lugar_form">
+      <field name="name">charla_clara.lugar.form</field>
+      <field name="model">charla_clara.lugar</field>
+      <field name="arch" type="xml">
+        <form string="Formulario Lugar">
+          <sheet>
+            <h1 style="padding-left: 20px; padding-top: 20px; font-size: 38px; color: #1e272e; font-weight: bold; text-decoration: underline;">
+              <field style="text-decoration: underline;" name="name"/>
+            </h1>
+            <group>
+              <group>
+                <span><field style="width: auto; margin-right: 30px; box-shadow: 0px 0px 5px 1px #1e272e; margin-left: 20px;" name="imagen" widget="image"/></span>
+              </group>
+              <group>
+                <!--
+                <field name="codigo_lugar"/>
+                -->
+                <field name="aforo"/>
+                <field name="parking_dis"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- VISTA BÚSQUEDA (FILTROS) - MODELO: CHARLA -->
+    <record model="ir.ui.view" id="charla_clara.charla_search">
+      <field name="name">charla_clara.charla.search</field>
+      <field name="model">charla_clara.charla</field>
+      <field name="arch" type="xml">
+        <search string="Charlas">
+            <field name="name" string="Charla"/>
+            <filter string="Precio ≥ 100$" name="precio_mayor_igual_100" help="Precio ≥ 100$" domain="[('precio', '&gt;=', 100)]"/>
+            <filter string="Precio ≤ 100$" name="precio_menor_igual_100" help="Precio ≤ 100$" domain="[('precio', '&lt;=', 100)]"/>
+            <separator/>
+            <filter string="Duración ≥ 120mins" name="duracion_mayor_igual_120" help="Duración ≥ 120" domain="[('duracion', '&gt;=', 120.0)]"/>
+            <filter string="Duración ≤ 120mins" name="duracion_menor_igual_120" help="Duración ≤ 120" domain="[('duracion', '&lt;=', 120.0)]"/>
+            <separator/>
+            <filter string="Charlas del Admin" name="charlas_del_admin" help="Charlas del Admin" domain="[('ponente', '=', 'Admin Blue')]"/>
+            <separator/>
+        </search>
+      </field>
+    </record>
+
+    <!-- VISTA HEREDADA BÚSQUEDA (AGRUPAR POR) - MODELO: CHARLA -->
+    <record model="ir.ui.view" id="charla_clara.charla_search_inherit">
+      <field name="name">charla_clara.charla.search.inherit</field>
+      <field name="model">charla_clara.charla</field>
+      <field name="inherit_id" ref="charla_clara.charla_search"/>
+      <field name="arch" type="xml">
+        <search string="Charlas">
+          <group expand="0" string="Group By">
+              <filter string="Tipo" name="tipo" context="{'group_by': 'tipo'}"/>
+              <filter string="Lugar" name="lugar" context="{'group_by': 'lugar'}"/>
+              <filter string="Ponente" name="ponente" context="{'group_by': 'ponente'}"/>
+              <filter string="Moneda" name="moneda" context="{'group_by': 'currency_id'}"/>
+              <filter string="Fecha" name="fecha" domain="[]" context="{'group_by': 'fecha'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="charla_clara.action_window">
+      <field name="name">charla_clara window</field>
+      <field name="res_model">charla_clara.charla_clara</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- ACCIONES DE VENTANA -->
+    <!--
+    La nomenclatura que menciona el profesor se cumple luego internamente.
+    En id ponemos el nombre del modelo
+    -->
+
+    <!-- ACCION DE VENTANA: MODELO CHARLA -->
+      <record id="charla_action_window" model="ir.actions.act_window">
+          <field name="name">Charlas</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">charla_clara.charla</field>
+          <field name="view_mode">tree,kanban,form</field>
+          <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                  ¡Crea tu primera charla!
+              </p>
+          </field>
+      </record>
+
+    <!-- ACCION DE VENTANA: MODELO LUGAR -->
+      <record id="lugar_action_window" model="ir.actions.act_window">
+          <field name="name">Lugares</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">charla_clara.lugar</field>
+          <field name="view_mode">tree,kanban,form</field>
+          <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                  ¡Crea tu primer lugar!
+              </p>
+          </field>
+      </record>
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="charla_clara.action_server">
+      <field name="name">charla_clara server</field>
+      <field name="model_id" ref="model_charla_clara_charla_clara"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+  -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="charla_clara" id="charla_clara.menu_root"/>
+    -->
+
+    <!-- MENÚS Y SUBMENÚS -->
+
+    <!-- Titulo principal -->
+    <menuitem id="charla_clara.menu_root"
+              name="Charlas Claras"
+              sequence="10"/>
+
+    <!-- Subtitulo charlas -->
+    <menuitem id="charla_clara.charlas"
+              name="Charlas"
+              parent="charla_clara.menu_root"
+              action="charla_action_window"
+              sequence="10"/>
+
+    <!-- Submenú del subtitulo Charlas -->
+    <menuitem id="charla_clara.gestionar_charlas"
+              name="Gestionar Charlas"
+              parent="charla_clara.charlas"
+              action="charla_action_window"
+              sequence="10"/>
+
+    <!-- Subtitulo lugares -->
+    <menuitem id="charla_clara.lugares"
+              name="Lugares"
+              parent="charla_clara.menu_root"
+              action="lugar_action_window"
+              sequence="10"/>
+
+    <!-- Submenú del subtitulo Lugares -->
+    <menuitem id="charla_clara.gestionar_lugares"
+              name="Gestionar Lugares"
+              parent="charla_clara.lugares"
+              action="lugar_action_window"
+              sequence="10"/>
+
+
+
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="charla_clara.menu_1" parent="charla_clara.menu_root"/>
+    <menuitem name="Menu 2" id="charla_clara.menu_2" parent="charla_clara.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="charla_clara.menu_1_list" parent="charla_clara.menu_1"
+              action="charla_clara.action_window"/>
+    <menuitem name="Server to list" id="charla_clara" parent="charla_clara.menu_2"
+              action="charla_clara.action_server"/>
+-->
+  </data>
+</odoo>

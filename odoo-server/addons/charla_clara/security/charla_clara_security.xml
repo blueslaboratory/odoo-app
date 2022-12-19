@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.module.category" id="module_category_charla_clara">
+      <field name="name">Charlas Claras</field>
+      <field name="description">Categoría para Charlas</field>
+      <field name="sequence">1</field>
+    </record>
+
+    <record id="charla_clara.administrador" model="res.groups">
+      <field name="name">Administrador</field>
+      <field name="category_id" ref="module_category_charla_clara"/>
+    </record>
+
+    <record id="charla_clara.usuario" model="res.groups">
+      <field name="name">Usuario</field>
+      <field name="category_id" ref="module_category_charla_clara"/>
+    </record>
+
+  </data>
+</odoo>
